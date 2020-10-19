@@ -1,0 +1,367 @@
+{
+	"info": {
+		"_postman_id": "73971ea1-20ef-46e5-8f5e-45adca494f49",
+		"name": "AgroWs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "35f4d527-4d70-4b2e-82c1-8752feef2128",
+						"exec": [
+							"// console.log(pm.environment.get(\"access_token\"))",
+							"var jsonData = pm.response.json();",
+							"pm.environment.set(\"access_token\", jsonData.access_token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "{{client_id}}",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "{{client_secret}}",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "text"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://agrows-keycloak.labbs.com.br/auth/realms/agrows/protocol/openid-connect/token",
+					"protocol": "https",
+					"host": [
+						"agrows-keycloak",
+						"labbs",
+						"com",
+						"br"
+					],
+					"path": [
+						"auth",
+						"realms",
+						"agrows",
+						"protocol",
+						"openid-connect",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Publish Data",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": " application/json, text/plain, */*",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"dateTime\": \"2020-10-08T09:46:59.43880417-03:00\",\n        \"fields\": {\n            \"frequency\": \"98.14\",\n            \"definitionOSS\": \"85.00\",\n            \"popularity\": \"10.00\",\n            \"friendly\": 0.5,\n            \"quality\": 0.5,\n            \"rawData\": \"https://datajson/empty\",\n            \"dono\": \"o:TheAlgorithms\",\n            \"name\": \"n:Javascript\",\n            \"provider\": \"github\",\n            \"type\": \"repositoryStats\"\n        },\n        \"tags\": {}\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{data-api}}/v1/owner/{{owner}}/thing/{{thing}}/node/{{node}}",
+					"host": [
+						"{{data-api}}"
+					],
+					"path": [
+						"v1",
+						"owner",
+						"{{owner}}",
+						"thing",
+						"{{thing}}",
+						"node",
+						"{{node}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Data",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": " application/json, text/plain, */*",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{data-api}}/v1/owner/{{owner}}/thing/{{thing}}/node/{{node}}?startDateTime=2020-07-05T20:52:15Z&endDateTime=2021-09-20T20:52:15Z",
+					"host": [
+						"{{data-api}}"
+					],
+					"path": [
+						"v1",
+						"owner",
+						"{{owner}}",
+						"thing",
+						"{{thing}}",
+						"node",
+						"{{node}}"
+					],
+					"query": [
+						{
+							"key": "startDateTime",
+							"value": "2020-07-05T20:52:15Z"
+						},
+						{
+							"key": "endDateTime",
+							"value": "2021-09-20T20:52:15Z"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Criar Schema",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true,
+					"content-length": true,
+					"user-agent": true,
+					"accept": true,
+					"connection": true,
+					"accept-encoding": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": " application/json, text/plain, */*",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"uri\": \"owner/gitfeed/thing/github/node/issueItemV1\",\n    \"fields\": [\n      {\n        \"name\": \"number\",\n        \"type\": \"decimal\"\n      },\n      {\n        \"name\": \"state\",\n        \"type\": \"short_string\"\n      },\n      {\n        \"name\": \"createdAt\",\n        \"type\": \"short_string\"\n      },\n      {\n        \"name\": \"updatedAt\",\n        \"type\": \"short_string\"\n      },\n      {\n        \"name\": \"closedAt\",\n        \"type\": \"short_string\"\n      },\n      {\n        \"name\": \"author\",\n        \"type\": \"short_string\"\n      },\n      {\n        \"name\": \"labels\",\n        \"type\": \"short_string\"\n      },\n      {\n        \"name\": \"participants\",\n        \"type\": \"decimal\"\n      },\n      {\n        \"name\": \"timelineItems\",\n        \"type\": \"decimal\"\n      }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://agrows-schema-api.labbs.com.br/v3/schema",
+					"protocol": "https",
+					"host": [
+						"agrows-schema-api",
+						"labbs",
+						"com",
+						"br"
+					],
+					"path": [
+						"v3",
+						"schema"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "JSON Data API - Save Data",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"test\": \"rafa\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{data-api}}/v1/files/upload/jsondata",
+					"host": [
+						"{{data-api}}"
+					],
+					"path": [
+						"v1",
+						"files",
+						"upload",
+						"jsondata"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "JSON Data API - Get Data",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"test\": \"rafa\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://agrows-json-data-api.labbs.com.br/v1/datajson/5f622187b2d68f56dd327ca9",
+					"protocol": "https",
+					"host": [
+						"agrows-json-data-api",
+						"labbs",
+						"com",
+						"br"
+					],
+					"path": [
+						"v1",
+						"datajson",
+						"5f622187b2d68f56dd327ca9"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{access_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "c143dca1-6b23-4e10-8cce-f8b2bfb205bd",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "c2fb4661-5f8d-4d43-b925-bbe406a5fd51",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "bcd11575-12f1-4d51-a69f-745452b58767",
+			"key": "access_token",
+			"value": ""
+		}
+	],
+	"protocolProfileBehavior": {}
+}
