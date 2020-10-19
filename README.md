@@ -9,7 +9,7 @@ GitHunter collect data from Github/Gitlab and analyse the best repositories to b
    https://github.com/labbsr0x/githunter-api  
 
 2. GitHunter Data Provider  
-   An CRUD API to maintain static data  
+   A CRUD API to maintain static data  
    https://github.com/labbsr0x/githunter-data-provider  
 
 3. GitHunter Bind Starws  
@@ -21,7 +21,7 @@ GitHunter collect data from Github/Gitlab and analyse the best repositories to b
    https://github.com/labbsr0x/githunter-scraper  
 
 5. GitHunter Analyser  
-   Analyser repositorie data collected by Githunter and save the result in Bind StarWS  
+   Analyser repositories data collected by GitHunter and save the result in Bind StarWS  
    https://github.com/labbsr0x/githunter-analyser  
 
 6. GitHunter Web   
@@ -33,7 +33,7 @@ GitHunter collect data from Github/Gitlab and analyse the best repositories to b
    https://github.com/labbsr0x/githunter-web-api  
 
 8.  GitHunter Score API  
-   Analyser users data collected by Githunter  
+   Analyser users data collected by GitHunter  
    https://github.com/labbsr0x/githunter-score-api  
 
 
