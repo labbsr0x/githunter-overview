@@ -54,6 +54,77 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Publish Repositories Statistics",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": " application/json, text/plain, */*",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"dateTime\": \"2020-10-16T15:15:39.285Z\",\n        \"frequency\": 40,\n        \"definitionOSS\": 87,\n        \"popularity\": 90,\n        \"friendly\": 32,\n        \"quality\": 91,\n        \"name\": \"name1\",\n        \"owner\": \"owner\",\n        \"provider\": \"{{thing}}\",\n        \"language\": \n            [\"javascript\"]\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3005/publish/provider/{{thing}}/node/repositoryStats?createRawData=true",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3005",
+					"path": [
+						"publish",
+						"provider",
+						"{{thing}}",
+						"node",
+						"repositoryStats"
+					],
+					"query": [
+						{
+							"key": "createRawData",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}
