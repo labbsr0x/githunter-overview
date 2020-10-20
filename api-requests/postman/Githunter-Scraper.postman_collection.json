@@ -1,0 +1,193 @@
+{
+	"info": {
+		"_postman_id": "603f95ce-c3bf-4ef7-a103-a4e4cdd080b8",
+		"name": "Githunter-Scraper",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Conductor",
+			"item": [
+				{
+					"name": "Scraper Users",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"scraper_users\",\n    \"version\": 1,\n    \"input\": {\n        \"scraperPoint\": \"organization.members\",\n        \"nodes\": \"userStats\",\n        \"organization\": \"bancodobrasil\",\n        \"provider\": \"github\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/workflow",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"workflow"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sourced Repos",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"sourced_repos\",\n    \"version\": 1,\n    \"input\": {\n        \"nodes\": \"code\",\n        \"sourceData\": [{\n            \"provider\": \"github\",\n            \"name\": \"swift\",\n            \"owner\": \"apple\"\n        }]\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/workflow",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"workflow"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Scraper Repos",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"scraper_repos\",\n    \"version\": 1,\n    \"input\": {\n        \"scraperPoint\": \"trending.github\",\n        \"nodes\": \"code issues pulls commits\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/workflow",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"workflow"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Schella",
+			"item": [
+				{
+					"name": "Schedule Users",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"scrapper-users-minute\",\n    \"enabled\": true,\n    \"parallelRuns\": false,\n    \"workflowName\": \"scraper_users\",\n    \"workflowVersion\": \"1\",\n    \"cronString\": \"* * * * *\",\n    \"workflowContext\": {\n        \"scraperPoint\": \"organization.members\",\n        \"nodes\": \"userStats\",\n        \"organization\": \"bancodobrasil\",\n        \"provider\": \"github\"\n    },\n    \"fromDate\": \"2019-01-01T00:00:00Z\",\n    \"toDate\": \"2020-01-01T00:00:00Z\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/schedule",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"schedule"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Schedule Repos",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"scrapper-reposs-minute\",\n    \"enabled\": true,\n    \"parallelRuns\": false,\n    \"workflowName\": \"scraper_repos\",\n    \"workflowVersion\": \"1\",\n    \"cronString\": \"* * * * *\",\n    \"workflowContext\": {\n        \"scraperPoint\": \"trending.github\",\n        \"nodes\": \"code issues pulls commits\"\n    },\n    \"fromDate\": \"2019-01-01T00:00:00Z\",\n    \"toDate\": \"2020-01-01T00:00:00Z\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/schedule",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"schedule"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Schedule Repos",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"scrapper-reposs-minute\",\n    \"enabled\": true,\n    \"parallelRuns\": false,\n    \"workflowName\": \"scraper_repos\",\n    \"workflowVersion\": \"1\",\n    \"cronString\": \"* * * * *\",\n    \"workflowContext\": {\n        \"scraperPoint\": \"trending.github\",\n        \"nodes\": \"code issues pulls commits\",\n        \"organization\": \"bancodobrasil\"\n    },\n    \"fromDate\": \"2019-01-01T00:00:00Z\",\n    \"toDate\": \"2020-01-01T00:00:00Z\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/schedule",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"schedule"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -1,0 +1,114 @@
+{
+	"info": {
+		"_postman_id": "6b747de9-63bb-43c4-a88d-eb500bc2a8e5",
+		"name": "Githunter-Web-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Repositories",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:5000/repositories?startDateTime=2020-09-01T00:00:00-03:00&endDateTime=2021-09-01T00:00:00-03:00&provider=github&languages=javascript,java,python&limit=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"repositories"
+					],
+					"query": [
+						{
+							"key": "startDateTime",
+							"value": "2020-09-01T00:00:00-03:00"
+						},
+						{
+							"key": "endDateTime",
+							"value": "2021-09-01T00:00:00-03:00"
+						},
+						{
+							"key": "provider",
+							"value": "github"
+						},
+						{
+							"key": "node",
+							"value": "repositoryStats",
+							"disabled": true
+						},
+						{
+							"key": "languages",
+							"value": "javascript,java,python"
+						},
+						{
+							"key": "limit",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Repository Historic",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:5000/repositories?startDateTime=2020-09-01T00:00:00-03:00&endDateTime=2021-09-01T00:00:00-03:00&provider=github&languages=javascript,java,python&limit=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"repositories"
+					],
+					"query": [
+						{
+							"key": "startDateTime",
+							"value": "2020-09-01T00:00:00-03:00"
+						},
+						{
+							"key": "endDateTime",
+							"value": "2021-09-01T00:00:00-03:00"
+						},
+						{
+							"key": "provider",
+							"value": "github"
+						},
+						{
+							"key": "node",
+							"value": "repositoryStats",
+							"disabled": true
+						},
+						{
+							"key": "languages",
+							"value": "javascript,java,python"
+						},
+						{
+							"key": "limit",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
