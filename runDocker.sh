@@ -1,9 +1,7 @@
 echo "Starting Githunter..."
 echo ""
 
-docker build --tag githunter:1.0 .
-
-docker-compose up -d
+docker-compose up -d --build
 
 echo ""
 echo "Done!"

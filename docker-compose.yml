@@ -2,7 +2,7 @@ version: '3.5'
 
 networks:
   githunter-net:
-    name: githunter-net
+  githunter-scraper-net:
   mongo-net:
 
 services:
@@ -26,7 +26,7 @@ services:
   # Githunter-Data-Provider
   githunter-data-provider:
     build: ./githunter-data-provider
-    container_name: data-provider
+    container_name: githunter-data-provider
     image: githunter-data-provider:1.0
     restart: always
     ports:
@@ -35,20 +35,16 @@ services:
       - mongo-net
       - githunter-net
 
-  # Githunter-Analyser
-
   #Githunter-Bind-StarWS
   githunter-bind-starws:
     build: ./githunter-bind-starws
     container_name: githunter-bind-starws
-    image: githunter-starws:1.0
+    image: githunter-bind-starws:1.0
     restart: always
     ports:
       - 3005:3005
     networks:
       - githunter-net
-
-  # Githunter-Scraper-WEB
 
   # Githunter-Scraper
   githunter-scraper:
@@ -59,6 +55,7 @@ services:
     ports:
       - 3002:3002
     networks:
+      - githunter-scraper-net
       - githunter-net
 
   schellar:
@@ -79,8 +76,8 @@ services:
         max-size: "20MB"
         max-file: "5"
     networks:
+      - githunter-scraper-net
       - mongo-net
-      - githunter-net
 
   conductor-server:
     build: ./githunter-scraper/conductor/server
@@ -95,7 +92,7 @@ services:
       - 8080:8080
     restart: always
     networks:
-      - githunter-net
+      - githunter-scraper-net
 
   conductor-ui:
     image: flaviostutz/conductor-ui
@@ -105,15 +102,15 @@ services:
     ports:
       - 5000:5000
     networks:
-      - githunter-net
+      - githunter-scraper-net
 
   dynomite:
     image: flaviostutz/dynomite:0.7.5
-    container_name: githunter-scraper-dynomite
+    container_name: scraper-dynomite
     ports:
       - 8102:8102
     networks:
-      - githunter-net
+      - githunter-scraper-net
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:5.6.8
@@ -127,10 +124,8 @@ services:
       - 9200:9200
       - 9300:9300
     networks:
-      - githunter-net
-
-  # Githunter-WEB
-
+      - githunter-scraper-net
+      
   # MongoDB for services Data-Provider & Schellar 
   mongo:
     image: mongo
