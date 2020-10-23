@@ -1,10 +1,9 @@
-version: '3'
+version: '3.5'
 
 networks:
   githunter-net:
-  githunter-data-provider-net:
-  githunter-scraper-net:
-  githunter-bind-staws-net:
+    name: githunter-net
+  mongo-net:
 
 services:
   # Githunter-API
@@ -19,42 +18,24 @@ services:
       GH_GRAPHQL_GITLAB_URL: https://gitlab.com/api/graphql
       GH_API_GITLAB_URL: https://gitlab.com/api/v4
       GH_SERVER_PORT: 3001
+    ports:
+      - 3001:3001
     networks:
       - githunter-net
-
+    
   # Githunter-Data-Provider
   githunter-data-provider:
     build: ./githunter-data-provider
-    container_name: githunter-data-provider
+    container_name: data-provider
     image: githunter-data-provider:1.0
     restart: always
     ports:
       - 3333:3333
     networks:
-      - githunter-data-provider-net
+      - mongo-net
       - githunter-net
-    depends_on:
-      - mongo-data-provider
 
-  mongo-data-provider:
-    image: mongo
-    container_name: mongo-data-provider
-    command: mongod --port 27018
-    restart: always
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: root
-    volumes:
-      - ./data/mongo-data-provider/volume:/data/db
-    ports:
-      - 27018:27018
-    networks:
-      - githunter-data-provider-net
-      - githunter-net
   # Githunter-Analyser
-  # githunter-analyser:
-  #   networks:
-  #     - githunter-net
 
   #Githunter-Bind-StarWS
   githunter-bind-starws:
@@ -62,23 +43,12 @@ services:
     container_name: githunter-bind-starws
     image: githunter-starws:1.0
     restart: always
-    links:
-      - "starws-ambassador:githunter-bind-starws"
     ports:
-      - 3005
+      - 3005:3005
     networks:
-      - githunter-bind-staws-net
       - githunter-net
 
-  starws-ambassador:
-    image: svendowideit/ambassador
-    container_name: starws-ambassador
-    ports:
-      - 5000:5000
-    environment:
-      STARTWS_PORT_5000_TCP: tcp://starws:3005
-    networks:
-      - githunter-bind-staws-net
+  # Githunter-Scraper-WEB
 
   # Githunter-Scraper
   githunter-scraper:
@@ -89,18 +59,11 @@ services:
     ports:
       - 3002:3002
     networks:
-      - githunter-scraper-net
       - githunter-net
-    depends_on:
-      - mongo-scraper
-      - githunter-api
-      - githunter-data-provider
-
-  #githuter-scraper-web:
 
   schellar:
     image: flaviostutz/schellar
-    container_name: githunter-scraper-schellar
+    container_name: scraper-schellar
     environment:
       - CONDUCTOR_API_URL=http://conductor-server:8080/api
       - MONGO_ADDRESS=mongo
@@ -116,12 +79,12 @@ services:
         max-size: "20MB"
         max-file: "5"
     networks:
+      - mongo-net
       - githunter-net
-      - githunter-scraper-net
 
   conductor-server:
     build: ./githunter-scraper/conductor/server
-    container_name: githunter-scraper-conductor-server
+    container_name: scraper-conductor-server
     image: conductor-server
     environment:
       - DYNOMITE_HOSTS=dynomite:8102:us-east-1c
@@ -132,18 +95,16 @@ services:
       - 8080:8080
     restart: always
     networks:
-      - githunter-scraper-net
       - githunter-net
 
   conductor-ui:
     image: flaviostutz/conductor-ui
-    container_name: githunter-scraper-conductor-ui
+    container_name: scraper-conductor-ui
     environment:
       - WF_SERVER=http://conductor-server:8080/api/
     ports:
       - 5000:5000
     networks:
-      - githunter-scraper-net
       - githunter-net
 
   dynomite:
@@ -152,11 +113,11 @@ services:
     ports:
       - 8102:8102
     networks:
-      - githunter-scraper-net
+      - githunter-net
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:5.6.8
-    container_name: githunter-scraper-elasticsearch
+    container_name: scraper-elasticsearch
     environment:
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
       - transport.host=0.0.0.0
@@ -166,22 +127,21 @@ services:
       - 9200:9200
       - 9300:9300
     networks:
-      - githunter-scraper-net
+      - githunter-net
 
-  mongo-scraper:
+  # Githunter-WEB
+
+  # MongoDB for services Data-Provider & Schellar 
+  mongo:
     image: mongo
-    container_name: githunter-mongo-scraper
-    command: mongod --port 27017
+    container_name: mongo
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
     volumes:
-      - ./data/mongo-scraper/volume:/data/db
+      - ./data/db/volume:/data/db
     ports:
       - 27017:27017
     networks:
-      - githunter-scraper-net
-      - githunter-net
-
-  #Githunter-WEB
+      - mongo-net

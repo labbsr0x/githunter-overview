@@ -1,9 +1,12 @@
+echo "Updating all repositories from Githunter..."
+echo ""
+
 cd githunter-api
 git pull origin master
 cd ..
 
 cd githunter-data-provider
-git pull origin main
+git pull origin master
 cd ..
 
 cd githunter-analyser
@@ -30,3 +33,5 @@ cd githunter-web
 git pull origin main
 cd ..
 
+echo ""
+echo "Done!"
