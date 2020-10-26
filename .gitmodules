@@ -1,0 +1,24 @@
+[submodule "githunter-analyser"]
+	path = githunter-analyser
+	url = https://github.com/labbsr0x/githunter-analyser
+[submodule "githunter-api"]
+	path = githunter-api
+	url = https://github.com/labbsr0x/githunter-api
+[submodule "githunter-data-provider"]
+	path = githunter-data-provider
+	url = https://github.com/labbsr0x/githunter-data-provider
+[submodule "githunter-bind-starws"]
+	path = githunter-bind-starws
+	url = https://github.com/labbsr0x/githunter-bind-starws
+[submodule "githunter-scraper"]
+	path = githunter-scraper
+	url = https://github.com/labbsr0x/githunter-scraper
+[submodule "githunter-web-api"]
+	path = githunter-web-api
+	url = https://github.com/labbsr0x/githunter-web-api
+[submodule "githunter-score-api"]
+	path = githunter-score-api
+	url = https://github.com/labbsr0x/githunter-score-api
+[submodule "githunter-web"]
+	path = githunter-web
+	url = https://github.com/labbsr0x/githunter-web
