@@ -36,9 +36,9 @@ If you need stop docker-compose, execute this command
 
 ## Projects
 
-1. GitHunter API  
+1. GitHunter Data Feed  
    An API to collect data from Github or Gitlab  
-   https://github.com/labbsr0x/githunter-api
+   https://github.com/labbsr0x/githunter-data-feed
 2. GitHunter Data Provider  
    A CRUD API to maintain static data  
    https://github.com/labbsr0x/githunter-data-provider
@@ -60,3 +60,6 @@ If you need stop docker-compose, execute this command
 8. GitHunter Score API  
    Analyser users data collected by GitHunter  
    https://github.com/labbsr0x/githunter-score-api
+9. Githunter API
+   A Customer interface with GitHunter Project.
+   https://github.com/labbsr0x/githunter-api
