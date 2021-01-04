@@ -4,9 +4,9 @@
 [submodule "githunter-api"]
 	path = githunter-api
 	url = https://github.com/labbsr0x/githunter-api
-[submodule "githunter-data-source"]
-	path = githunter-data-provider
-	url = https://github.com/labbsr0x/githunter-data-source
+[submodule "githunter-data-feed"]
+	path = githunter-data-feed
+	url = https://github.com/labbsr0x/githunter-data-feed
 [submodule "githunter-data-provider"]
 	path = githunter-data-provider
 	url = https://github.com/labbsr0x/githunter-data-provider
