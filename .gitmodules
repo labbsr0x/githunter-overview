@@ -1,12 +1,10 @@
 [submodule "githunter-analyser"]
 	path = githunter-analyser
 	url = https://github.com/labbsr0x/githunter-analyser
-[submodule "githunter-api"]
-	path = githunter-api
-	url = https://github.com/labbsr0x/githunter-api
 [submodule "githunter-data-feed"]
 	path = githunter-data-feed
-	url = https://github.com/labbsr0x/githunter-data-feed
+	url = https://github.com/labbsr0x/githunter-data-feed.git
+	branch = master
 [submodule "githunter-data-provider"]
 	path = githunter-data-provider
 	url = https://github.com/labbsr0x/githunter-data-provider
@@ -25,3 +23,7 @@
 [submodule "githunter-web"]
 	path = githunter-web
 	url = https://github.com/labbsr0x/githunter-web
+[submodule "githunter-api"]
+	path = githunter-api
+	url = https://github.com/labbsr0x/githunter-api.git
+	branch = main
