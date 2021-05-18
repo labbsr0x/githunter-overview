@@ -1,0 +1,288 @@
+[
+    {
+        "name": "scrapper-repos-pulls",
+        "enabled": true,
+        "workflowName": "scraper_repos",
+        "workflowVersion": "1",
+        "workflowContext": {
+            "nodes": "pulls",
+            "scraperPoint": "trending.github"
+        },
+        "cronString": "4 */2 * * *",
+        "fromDate": "2019-01-01T00:00:00Z",
+        "toDate": "2022-01-01T00:00:00Z",
+        "lastUpdate": "0001-01-01T00:00:00Z"
+    },
+    {
+        "name": "scrapper-repos-commits",
+        "enabled": true,
+        "workflowName": "scraper_repos",
+        "workflowVersion": "1",
+        "workflowContext": {
+            "nodes": "commits",
+            "scraperPoint": "trending.github"
+        },
+        "cronString": "6 */2 * * *",
+        "fromDate": "2019-01-01T00:00:00Z",
+        "toDate": "2022-01-01T00:00:00Z",
+        "lastUpdate": "0001-01-01T00:00:00Z"
+    },
+    {
+        "name": "scrapper-repos-code",
+        "enabled": true,
+        "workflowName": "scraper_repos",
+        "workflowVersion": "1",
+        "workflowContext": {
+            "nodes": "code",
+            "scraperPoint": "trending.github"
+        },
+        "cronString": "0 */2 * * *",
+        "fromDate": "2019-01-01T00:00:00Z",
+        "toDate": "2022-01-01T00:00:00Z",
+        "lastUpdate": "0001-01-01T00:00:00Z"
+    },
+    {
+        "name": "users-PicPay",
+        "enabled": true,
+        "workflowName": "scraper_users",
+        "workflowVersion": "1",
+        "workflowContext": {
+            "nodes": "userStats",
+            "organization": "PicPay",
+            "provider": "github",
+            "scraperPoint": "organization.members"
+        },
+        "cronString": "47 8,12,14,16,17,18,21 * * *",
+        "fromDate": "2020-11-10T00:00:00Z",
+        "toDate": "2022-12-31T00:00:00Z",
+        "lastUpdate": "2021-01-12T11:17:30.715Z"
+    },
+    {
+        "name": "users-nfl",
+        "enabled": true,
+        "workflowName": "scraper_users",
+        "workflowVersion": "1",
+        "workflowContext": {
+            "nodes": "userStats",
+            "organization": "nfl",
+            "provider": "github",
+            "scraperPoint": "organization.members"
+        },
+        "cronString": "43 8,12,14,16,18,21 * * *",
+        "fromDate": "2020-11-10T00:00:00Z",
+        "toDate": "2022-12-31T00:00:00Z",
+        "lastUpdate": "2021-01-06T16:43:19.15Z"
+    },
+    {
+        "name": "users-ifood",
+        "enabled": true,
+        "workflowName": "scraper_users",
+        "workflowVersion": "1",
+        "workflowContext": {
+            "nodes": "userStats",
+            "organization": "ifood",
+            "provider": "github",
+            "scraperPoint": "organization.members"
+        },
+        "cronString": "40 8,12,14,16,18,21 * * *",
+        "fromDate": "2020-11-10T00:00:00Z",
+        "toDate": "2022-12-31T00:00:00Z",
+        "lastUpdate": "2021-01-06T16:40:17.054Z"
+    },
+    {
+        "name": "users-mercadolibre",
+        "enabled": true,
+        "workflowName": "scraper_users",
+        "workflowVersion": "1",
+        "workflowContext": {
+            "nodes": "userStats",
+            "organization": "mercadolibre",
+            "provider": "github",
+            "scraperPoint": "organization.members"
+        },
+        "cronString": "37 8,12,14,16,18,21 * * *",
+        "fromDate": "2020-11-10T00:00:00Z",
+        "toDate": "2022-12-31T00:00:00Z",
+        "lastUpdate": "2021-01-06T16:37:51.459Z"
+    },
+    {
+        "name": "users-nubank",
+        "enabled": true,
+        "workflowName": "scraper_users",
+        "workflowVersion": "1",
+        "workflowContext": {
+            "nodes": "userStats",
+            "organization": "nubank",
+            "provider": "github",
+            "scraperPoint": "organization.members"
+        },
+        "cronString": "34 8,12,14,16,18,21 * * *",
+        "fromDate": "2020-11-10T00:00:00Z",
+        "toDate": "2022-12-31T00:00:00Z",
+        "lastUpdate": "2021-01-06T16:34:22.068Z"
+    },
+    {
+        "name": "users-luizalabs",
+        "enabled": true,
+        "workflowName": "scraper_users",
+        "workflowVersion": "1",
+        "workflowContext": {
+            "nodes": "userStats",
+            "organization": "luizalabs",
+            "provider": "github",
+            "scraperPoint": "organization.members"
+        },
+        "cronString": "31 8,12,14,16,18,21 * * *",
+        "fromDate": "2020-11-10T00:00:00Z",
+        "toDate": "2022-12-31T00:00:00Z",
+        "lastUpdate": "2021-01-06T16:31:10.989Z"
+    },
+    {
+        "name": "users-globocom",
+        "enabled": true,
+        "workflowName": "scraper_users",
+        "workflowVersion": "1",
+        "workflowContext": {
+            "nodes": "userStats",
+            "organization": "globocom",
+            "provider": "github",
+            "scraperPoint": "organization.members"
+        },
+        "cronString": "29 8,12,14,16,18,21 * * *",
+        "fromDate": "2020-11-10T00:00:00Z",
+        "toDate": "2022-12-31T00:00:00Z",
+        "lastUpdate": "2021-01-06T16:29:20.974Z"
+    },
+    {
+        "name": "users-stone-payments",
+        "enabled": true,
+        "workflowName": "scraper_users",
+        "workflowVersion": "1",
+        "workflowContext": {
+            "nodes": "userStats",
+            "organization": "stone-payments",
+            "provider": "github",
+            "scraperPoint": "organization.members"
+        },
+        "cronString": "26 8,12,14,16,18,21 * * *",
+        "fromDate": "2020-11-10T00:00:00Z",
+        "toDate": "2022-12-31T00:00:00Z",
+        "lastUpdate": "2021-01-06T16:26:09.855Z"
+    },
+    {
+        "name": "users-totvs",
+        "enabled": true,
+        "workflowName": "scraper_users",
+        "workflowVersion": "1",
+        "workflowContext": {
+            "nodes": "userStats",
+            "organization": "totvs",
+            "provider": "github",
+            "scraperPoint": "organization.members"
+        },
+        "cronString": "23 8,12,14,16,18,21 * * *",
+        "fromDate": "2020-11-10T00:00:00Z",
+        "toDate": "2022-12-31T00:00:00Z",
+        "lastUpdate": "2021-01-06T16:23:07.913Z"
+    },
+    {
+        "name": "users-bancodobrasil",
+        "enabled": true,
+        "workflowName": "scraper_users",
+        "workflowVersion": "1",
+        "workflowContext": {
+            "nodes": "userStats",
+            "organization": "bancodobrasil",
+            "provider": "github",
+            "scraperPoint": "organization.members"
+        },
+        "cronString": "20 8,12,14,16,18,21 * * *",
+        "fromDate": "2020-01-01T00:00:00Z",
+        "toDate": "2022-01-01T00:00:00Z",
+        "lastUpdate": "2021-01-06T16:20:14.816Z"
+    },
+    {
+    "name": "scrapper-users-gdp",
+    "enabled": true,
+    "parallelRuns": false,
+    "workflowName": "scraper_by_source_data",
+    "workflowVersion": "1",
+    "cronString": "20 2 * * *",
+    "workflowContext": {
+        "sourceData": [
+      {
+         "login": "smarcbr",
+         "nodes": "userStats",
+         "provider": "github"
+      },
+      {
+         "login": "Cintya-Silva",
+         "nodes": "userStats",
+         "provider": "github"
+      },
+      {
+         "login": "MarcioMad",
+         "nodes": "userStats",
+         "provider": "github"
+      },
+      {
+         "login": "assenaw",
+         "nodes": "userStats",
+         "provider": "github"
+      },
+      {
+         "login": "jstacciarini",
+         "nodes": "userStats",
+         "provider": "github"
+      },
+      {
+         "login": "SanNoronha",
+         "nodes": "userStats",
+         "provider": "github"
+      },
+      {
+         "login": "erikdf",
+         "nodes": "userStats",
+         "provider": "github"
+      },
+      {
+         "login": "napierbb",
+         "nodes": "userStats",
+         "provider": "github"
+      },
+      {
+         "login": "BadaroThiago",
+         "nodes": "userStats",
+         "provider": "github"
+      },
+      {
+         "login": "jacquecdias",
+         "nodes": "userStats",
+         "provider": "github"
+      },
+      {
+         "login": "pauloeduardomc",
+         "nodes": "userStats",
+         "provider": "github"
+      },
+      {
+         "login": "pauloboni",
+         "nodes": "userStats",
+         "provider": "github"
+      },
+      {
+         "login": "CarolineCostaBB",
+         "nodes": "userStats",
+         "provider": "github"
+      },
+      {
+         "login": "wpmag",
+         "nodes": "userStats",
+         "provider": "github"
+      }
+   ]
+    },
+    "fromDate": "2019-01-01T00:00:00Z",
+    "toDate": "2022-01-01T00:00:00Z"
+}
+]
